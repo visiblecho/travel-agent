@@ -2,7 +2,7 @@ import axios from 'axios'
 
 // import { getToken } from '../utils/token'
 const getToken = () => {
-  return 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjY5MjQ4YWFjMjg5NmVkOTdjMmI3YzUyMSIsInVzZXJuYW1lIjoiY29ybmVsaXVzIn0sImlhdCI6MTc2NDAwMjc3MiwiZXhwIjoxNzY0MTc1NTcyfQ.Ijehuy5q-0nN3Yx0y2yY8pqMNGRBxRr9EHYDq5MdADQ'
+  return 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjY5MjQ4YWFjMjg5NmVkOTdjMmI3YzUyMSIsInVzZXJuYW1lIjoiY29ybmVsaXVzIn0sImlhdCI6MTc2NDA3NDM2MywiZXhwIjoxNzY0MjQ3MTYzfQ.toU5wJHy_8-7KRL5A0g6mq4V9z-urlpGeng7jfjT0W4'
 }
 
 const api = axios.create({
