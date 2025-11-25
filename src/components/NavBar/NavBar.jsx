@@ -4,6 +4,9 @@ import { useContext } from "react";
 
 const NavBar = () => {
     const { user } = useContext(UserContext)
+    const capitalizeFirstLetter = (username) => {
+      return username.charAt(0).toUpperCase() + username.slice(1)
+    }
   return (
     <header className='navbar'>
       <div id="brand-logo">
@@ -12,7 +15,7 @@ const NavBar = () => {
 
       <div className='account-link'>
         {user ? (
-            <Link to='/account'>{user.username}</Link>
+            <Link to='/account'>{capitalizeFirstLetter(user.username)}</Link>
         ): (
             <Link to='/auth/sign-in'>Touch your dreams</Link>
         )}
