@@ -2,9 +2,17 @@ import './Home.css'
 import { UserContext } from '../../contexts/UserContext'
 import { useContext } from 'react'
 import { Link } from 'react-router'
+import TripIndex from '../TripIndex/TripIndex'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router'
 
 const Home = () => {
     const { user } = useContext(UserContext)
+    const navigate = useNavigate()
+    useEffect(()=> {
+    if (user) navigate('/trips')
+    },[user])
+
     return (
         <main className='home-page'>
             {!user ? (
@@ -17,18 +25,8 @@ const Home = () => {
                     <Link to='/auth/sign-up'><button>Create Account</button></Link>
                 </div>
                 </div>
-            ) : (
-                <div className='logged-in-home'>
-                    <h1>Logo</h1>
-                    <h1>Trips</h1>
-                    <div className='trips-list'>
-                        <h1>Trips will go here - map</h1>
-                    </div>
-                <Link to='/trips/new'>
-                    <button>Create New Trip</button>
-                </Link>
-                </div>
-            )}
+            ) : null
+        }
         </main>
     )
 }

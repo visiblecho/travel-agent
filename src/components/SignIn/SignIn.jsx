@@ -26,7 +26,7 @@ const SignIn = () => {
       const token = response.data.token
       if (token) setToken(token)
       setUser(getUserFromToken())
-      navigate('/');
+      navigate('/trips');
     } catch (error) {
       const res = error.response;
       if (!res) {
