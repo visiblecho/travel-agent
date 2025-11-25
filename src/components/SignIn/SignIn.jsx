@@ -45,7 +45,7 @@ const SignIn = () => {
       <h1>Sign In</h1>
       <form onSubmit={handleSubmit}>
         <div className="form-control">
-          <label htmlFor="username"></label>
+          <label htmlFor="username">Username</label>
           <input
             type="text"
             name="username"
@@ -59,7 +59,7 @@ const SignIn = () => {
           )}
         </div>
         <div className="form-control">
-          <label htmlFor="password"></label>
+          <label htmlFor="password">Password</label>
           <input
             type="password"
             name="password"
