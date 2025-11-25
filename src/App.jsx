@@ -8,6 +8,10 @@ import SignIn from './components/SignIn/SignIn'
 import NotFound from './components/NotFound/NotFound'
 import Home from './components/Home/Home'
 
+import TripIndex from './components/TripIndex/TripIndex'
+import TripCreate from './components/TripCreate/TripCreate'
+import TripUpdate from './components/TripUpdate/TripUpdate'
+
 const App = () => {
   return (
     <>
@@ -15,8 +19,12 @@ const App = () => {
     <main>
       <Routes>
         <Route index element={<Home />}/>
-        <Route path='auth/sign-in' element={<SignIn />}/>
-        <Route path='auth/sign-up' element={<SignUp />}/>
+        <Route path='/sign-in' element={<SignIn />} />
+        <Route path='/sign-up' element={<SignUp />} />
+        <Route path='/' element={<TripIndex />} />
+        <Route path='/trips' element={<TripIndex />} />
+        <Route path='/trips/new' element={<TripCreate />} />
+        <Route path='/trips/:tripId' element={<TripUpdate />} />
         <Route path='/*' element={<NotFound/>}/>
       </Routes>
     </main>
