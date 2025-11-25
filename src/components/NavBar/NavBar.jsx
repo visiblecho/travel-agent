@@ -1,6 +1,10 @@
 import { Link } from "react-router";
+import { UserContext } from "../../contexts/UserContext";
+import { useContext } from "react";
 
 const NavBar = () => {
+    const { user } = useContext(UserContext)
+    console.log('User', user)
   return (
     <header>
       <div id="brand-logo">
