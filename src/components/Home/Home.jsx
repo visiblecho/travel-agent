@@ -6,19 +6,27 @@ import { Link } from 'react-router'
 const Home = () => {
     const { user } = useContext(UserContext)
     return (
-        <main>
+        <main className='home-page'>
             {!user ? (
-                <div>
+                <div className='logged-out-home'>
                     <h1>Logo</h1>
                     <h1>Your next trip, realized</h1>
-                    <p>Images of trips</p>
-                    <Link to='/auth/sign-in'>Sign In</Link>
-                    <Link to='/auth/sign-up'>Create Account</Link>
+                    <p>Images of trips (placeholders)</p>
+                <div className='auth-buttons'>
+                    <Link to='/auth/sign-in'><button>Sign In</button></Link>
+                    <Link to='/auth/sign-up'><button>Create Account</button></Link>
+                </div>
                 </div>
             ) : (
-                <div>
+                <div className='logged-in-home'>
                     <h1>Logo</h1>
-                    <h1>{user.username}</h1>
+                    <h1>Trips</h1>
+                    <div className='trips-list'>
+                        <h1>Trips will go here - map</h1>
+                    </div>
+                <Link to='/trips/new'>
+                    <button>Create New Trip</button>
+                </Link>
                 </div>
             )}
         </main>
