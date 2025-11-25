@@ -1,7 +1,10 @@
+import './TripOverview.module.css'
+
 const TripOverview = () => {
     // Create some dummy data
     const trips = [
         {
+            _id: '21321321',
             title: "Beijing",
             description: "Past and future",
             destination: "Beijing",
@@ -16,6 +19,7 @@ const TripOverview = () => {
                 }
             ]
         }, {
+            _id: '57465313',
             title: "Big Apple",
             description: "Explore the known and unknown treasures",
             destination: "New York",
@@ -32,6 +36,11 @@ const TripOverview = () => {
         }
     ]
 
+    // * User Actions
+    const handleCreateNewTrip = () => {console.log('Create New Trip')}
+    const handleReviewPastTrip = () => {console.log('Review Past Trip')}
+    const handleEditTrip = () => {console.log('Edit Trip')}
+
     // Display the component
     return (
         <>
@@ -39,7 +48,7 @@ const TripOverview = () => {
         <div className='information'>
             <ul>
                 {trips.map(trip => {
-                    return <li>
+                    return <li key={trip._id} onClick={handleEditTrip}>
                         <h3>{trip.title}</h3>
                         <p>{trip.description}</p>
                         <p>{trip.destination}, {trip.country}</p>
@@ -50,8 +59,8 @@ const TripOverview = () => {
             </ul>
         </div>
         <div className='actions'>
-            <button className='primary'>Create new trip</button>
-            <button className='secondary' disabled>Review past trip</button>
+            <button className='primary' onClick={handleCreateNewTrip}>Create new trip</button>
+            <button className='secondary' onClick={handleReviewPastTrip} disabled>Review past trip</button>
         </div>
         </>
     )
