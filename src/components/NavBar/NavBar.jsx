@@ -25,7 +25,7 @@ const NavBar = () => {
      >
     <Stack spacing={1} sx={{ alignItems: 'center', textAlign: 'center'}}>
     {/* Brand Logo */}
-     <img src={AppLogo} alt='An airplane and sun composed into a logo' height={130} style={{ marginRight: 8}} />
+     <img src={AppLogo} alt='An airplane and sun composed into a logo' height={150} style={{ marginRight: 8}} />
      <Typography variant='h4' color='inherit' sx={{ fontWeight: 'bold', }}>
       Travel Agent
      </Typography>

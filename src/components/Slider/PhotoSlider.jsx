@@ -8,7 +8,6 @@ import Venice from '../../assets/Venice.jpeg'
 
 const PhotoSlider = () => {
     const settings = {
-        dots: true,
         infinite: true, 
         speed: 500, 
         slidesToShow: 1,
