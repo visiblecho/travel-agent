@@ -1,4 +1,3 @@
-import './Account.css'
 import { Link } from 'react-router'
 import { useContext } from 'react'
 import { UserContext } from '../../contexts/UserContext'

@@ -26,16 +26,16 @@ const NavBar = () => {
     <Stack spacing={1} sx={{ alignItems: 'center', textAlign: 'center'}}>
     {/* Brand Logo */}
      <img src={AppLogo} alt='An airplane and sun composed into a logo' height={130} style={{ marginRight: 8}} />
-     <Typography variant='h6' color='inherit' sx={{ fontWeight: 'bold'}}>
+     <Typography variant='h4' color='inherit' sx={{ fontWeight: 'bold', }}>
       Travel Agent
      </Typography>
      {/* Username or Tagline */}
        {user ? (
-      <Typography variant='subtitle1' color='inherit' component={Link} to='/account' >
+      <Typography variant='h6' color='inherit' component={Link} to='/account' >
           {user.username}
       </Typography>
        ) : (
-        <Typography variant='subtitle2' color='inherit' component={Link} to='/'>
+        <Typography variant='h6' color='inherit' component={Link} to='/' sx={{textDecoration: 'none'}} >
         Touch your dreams
       </Typography>
        )}
