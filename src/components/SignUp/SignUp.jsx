@@ -3,6 +3,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { signUpService } from "../../services/auth";
 
+import { Typography, TextField, Button, Box, Stack, Paper } from "@mui/material";
+
 const SignUp = () => {
   const [formData, setFormData] = useState({
     username: "",
@@ -38,26 +40,48 @@ const SignUp = () => {
   };
   return (
     <>
-      <h1>Create an account</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="form-control">
-          <label htmlFor="username">Username</label>
-          <input
+          <Box 
+      sx={{ 
+        minHeight: '100hv',
+        display: 'flex', 
+        justifyContent: 'center',
+        alignItems: 'center',
+        p: 2,
+      }}>
+      <Paper 
+      elevation={3}
+      sx={{
+        p: 4,
+        width: { xs: '90%', sm: 400 },
+        bgcolor: '#F5F5F5'
+      }}
+      >
+      <Typography variant="h4" align='center'gutterBottom>
+         Create an Account
+        </Typography>
+      <Stack 
+        component='form'
+        spacing={2}
+        onSubmit={handleSubmit}
+      >
+        <TextField
+            label='Username'
+            variant='outlined'
             type="text"
             name="username"
-            id="username"
+            value={formData.username}
             placeholder="Username"
             onChange={handleChange}
+            fullWidth
             required
           />
           {errorData.username && (
             <p className="error-message">{errorData.username}</p>
           )}
-        </div>
-        <div className="form-control">
-          <label htmlFor="email">Email</label>
-          <input
-            type="text"
+            <TextField
+            label='Email'
+            vartiant='outlined'
+            type="email"
             name="email"
             id="email"
             placeholder="Email"
@@ -67,41 +91,41 @@ const SignUp = () => {
           {errorData.email && (
             <p className="error-message">{errorData.email}</p>
           )}
-        </div>
-        <div className="form-control">
-          <label htmlFor="password">Password</label>
-          <input
+          <TextField
+            label='Enter Password'
+            vartiant='outlined'
             type="password"
             name="password"
             id="password"
-            placeholder="Password"
+            placeholder="Enter Password"
             onChange={handleChange}
             required
           />
           {errorData.password && (
             <p className="error-message">{errorData.password}</p>
           )}
-        </div>
-        <div className="form-control">
-          <label htmlFor="confirmPassword">Confirm Password</label>
-          <input
+          <TextField
+            label='Confirm Password'
+            vartiant='outlined'
             type="password"
             name="confirmPassword"
             id="confirmPassword"
-            placeholder="Confirm Your Password"
+            placeholder="Confirm Password"
             onChange={handleChange}
             required
           />
           {errorData.confirmPassword && (
             <p className="error-message">{errorData.confirmPassword}</p>
           )}
-        </div>
-
-        <button type="submit">Create account</button>
+          <Button type='submit' variant="contained">
+          Create Account
+        </Button>
         {errorData.message && (
           <p className="error-message">{errorData.message}</p>
         )}
-      </form>
+      </Stack>
+      </Paper>
+      </Box>
     </>
   );
 };

@@ -5,6 +5,10 @@ import { signInService } from "../../services/auth";
 import { getUserFromToken, setToken } from "../../utils/token";
 import { UserContext } from "../../contexts/UserContext";
 
+import { Typography, TextField, Button, Box, Stack, Paper } from "@mui/material";
+// import FormCard from "../../theme/formCard";
+// import FormRow from "../../theme/FormRom";
+
 const SignIn = () => {
   const { setUser } = useContext(UserContext)
   const [formData, setFormData] = useState({
@@ -42,25 +46,47 @@ const SignIn = () => {
   };
   return (
     <>
-      <h1>Sign In</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="form-control">
-          <label htmlFor="username">Username</label>
-          <input
+      <Box 
+      sx={{ 
+        minHeight: '100hv',
+        display: 'flex', 
+        justifyContent: 'center',
+        alignItems: 'center',
+        p: 2,
+      }}>
+      <Paper 
+      elevation={3}
+      sx={{
+        p: 4,
+        width: { xs: '90%', sm: 400 },
+        bgcolor: '#F5F5F5'
+      }}
+      >
+        <Typography variant="h4" align='center'gutterBottom>
+          Sign In
+        </Typography>
+      <Stack 
+        component='form'
+        spacing={2}
+        onSubmit={handleSubmit}
+        >
+          <TextField
+            label='Username'
+            variant='outlined'
             type="text"
             name="username"
-            id="username"
+            value={formData.username}
             placeholder="Username"
             onChange={handleChange}
+            fullWidth
             required
           />
           {errorData.username && (
             <p className="error-message">{errorData.username}</p>
           )}
-        </div>
-        <div className="form-control">
-          <label htmlFor="password">Password</label>
-          <input
+          <TextField
+            label='Enter Password'
+            vartiant='outlined'
             type="password"
             name="password"
             id="password"
@@ -71,12 +97,15 @@ const SignIn = () => {
           {errorData.password && (
             <p className="error-message">{errorData.password}</p>
           )}
-        </div>
-        <button type="submit">Sign In</button>
+        <Button type='submit' variant="contained">
+          Sign In
+        </Button>
         {errorData.message && (
           <p className="error-message">{errorData.message}</p>
         )}
-      </form>
+        </Stack>
+      </Paper>
+      </Box>
     </>
   );
 };
