@@ -1,11 +1,13 @@
-import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router'
+import { useState, useEffect, useContext } from 'react'
+import { useNavigate, Navigate } from 'react-router'
 
+import { UserContext } from '../../contexts/UserContext.jsx'
 import { tripIndex } from '../../services/trips'
 
 import './TripIndex.module.css'
 
 const TripIndex = () => {
+    const { user } = useContext(UserContext)
   const [trips, setTrips] = useState([])
   const [isLoading, setIsLoading] = useState(true)
 
@@ -49,7 +51,8 @@ const TripIndex = () => {
     console.log('Review Past Trip')
   }
 
-  // Display the component
+  if (!user) return <Navigate to="/auth/sign-in" />
+
   return (
     <>
       <h2 className="subheader">Trips</h2>

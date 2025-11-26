@@ -1,13 +1,13 @@
-import { useContext, useState, useEffect } from 'react'
+import { useContext, useState } from 'react'
 import { useParams, useNavigate, Navigate } from 'react-router'
 
-// import { UserContext } from '../../contexts/UserContext.jsx'
+import { UserContext } from '../../contexts/UserContext.jsx'
 import { tripCreate } from '../../services/trips.js'
 
 import './TripCreate.module.css'
 
 const TripCreate = () => {
-  // const { user } = useContext(UserContext)
+  const { user } = useContext(UserContext)
   const [formData, setFormData] = useState({
     owner: '',
     title: '',
@@ -52,10 +52,7 @@ const TripCreate = () => {
     console.log('Add Activities')
   }
 
-  /*
-  if (!user) {
-    return <Navigate to="/sign-in" />
-  }*/
+  if (!user) return <Navigate to="/auth/sign-in" />
 
   return (
     <>
