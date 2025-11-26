@@ -1,6 +1,10 @@
 import { Link } from 'react-router'
 import { UserContext } from '../../contexts/UserContext'
 import { useContext } from 'react'
+import AppLogo from '../../assets/App-Logo-2.png'
+
+import { AppBar, Toolbar, Typography, Button, Box, Stack } from '@mui/material'
+import { textTransform } from '@mui/system'
 
 const NavBar = () => {
   const { user } = useContext(UserContext)
@@ -10,20 +14,33 @@ const NavBar = () => {
   }
   */
   return (
-    <header className="navbar">
-      <div id="brand-logo">
-        <Link to="/">🏝️ Travel Agent 🏝️</Link>
-      </div>
-
-      <div className="account-link">
-        {user ? (
-          // <Link to="/account">{capitalizeFirstLetter(user.username)}</Link>
-          <Link to="/account">{user.username}</Link>
-        ) : (
-          <Link to="/auth/sign-in">Touch your dreams</Link>
-        )}
-      </div>
-    </header>
+    <Toolbar 
+     sx={{
+      display: 'flex',
+      justifyContent: 'center',
+      maxWidth: '1200px',
+      margin: '0 auto',
+      width: '100%'
+     }}
+     >
+    <Stack spacing={1} sx={{ alignItems: 'center', textAlign: 'center'}}>
+    {/* Brand Logo */}
+     <img src={AppLogo} alt='An airplane and sun composed into a logo' height={130} style={{ marginRight: 8}} />
+     <Typography variant='h6' color='inherit' sx={{ fontWeight: 'bold'}}>
+      Travel Agent
+     </Typography>
+     {/* Username or Tagline */}
+       {user ? (
+      <Typography variant='subtitle1' color='inherit' component={Link} to='/account' >
+          {user.username}
+      </Typography>
+       ) : (
+        <Typography variant='subtitle2' color='inherit' component={Link} to='/'>
+        Touch your dreams
+      </Typography>
+       )}
+       </Stack>
+     </Toolbar>
   )
 }
 

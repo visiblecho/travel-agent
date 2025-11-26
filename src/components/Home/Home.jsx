@@ -6,6 +6,8 @@ import TripIndex from '../TripIndex/TripIndex'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router'
 
+import { Box, Typography, Stack, Button, Paper } from '@mui/material'
+
 const Home = () => {
     const { user } = useContext(UserContext)
     const navigate = useNavigate()
@@ -17,7 +19,6 @@ const Home = () => {
         <main className='home-page'>
             {!user ? (
                 <div className='logged-out-home'>
-                    <h1>Logo</h1>
                     <h1>Your next trip, realized</h1>
                     <p>Images of trips (placeholders)</p>
                 <div className='auth-buttons'>
