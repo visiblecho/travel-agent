@@ -3,7 +3,7 @@ import { useParams, useNavigate, Navigate } from 'react-router'
 import { Stack, TextField, Button } from '@mui/material'
 
 import { UserContext } from '../../contexts/UserContext.jsx'
-import { tripCreate } from '../../services/trips.js'
+import { activityCreate } from '../../services/trips.js'
 
 const ActivityCreate = () => {
   const [formData, setFormData] = useState({
@@ -16,6 +16,7 @@ const ActivityCreate = () => {
     websiteUrl: '',
     imageUrl: '',
   })
+  const { tripId } = useParams()
   const navigate = useNavigate()
 
   const handleChange = (field) => (event) => {
@@ -28,7 +29,7 @@ const ActivityCreate = () => {
   const handleSubmit = async (event) => {
     event.preventDefault()
     try {
-      const { data } = await activityCreate(formData)
+      const { data } = await activityCreate(tripId, formData)
       // TODO: Confirm edit
       navigate('/trips/')
     } catch (error) {
