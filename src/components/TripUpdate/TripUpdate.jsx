@@ -66,6 +66,7 @@ const TripUpdate = () => {
 
   const handleAddActivities = () => {
     console.log('Add Activities')
+    navigate(`/trips/${tripId}/activities/new`)
   }
 
   const handleDeleteTrip = () => {
@@ -196,7 +197,7 @@ const TripUpdate = () => {
         <button className="primary" type="submit" form="tripForm">
           Confirm changes
         </button>
-        <button className="secondary" onClick={handleAddActivities} disabled>
+        <button className="secondary" onClick={handleAddActivities}>
           Add activity
         </button>
         <button className="secondary" onClick={handleDeleteTrip} disabled>
