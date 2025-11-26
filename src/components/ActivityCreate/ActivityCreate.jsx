@@ -44,6 +44,10 @@ const ActivityCreate = () => {
     }
   }
 
+  const handleRefine = () => {
+    console.log('Refine activity')
+  }
+
   return (
     <form onSubmit={handleSubmit}>
       <Stack spacing={2}>
@@ -99,6 +103,9 @@ const ActivityCreate = () => {
         />
         <Button variant="contained" color="primary" type="submit">
           Submit
+        </Button>
+        <Button variant="contained" color="secondary" onClick={handleRefine} disabled>
+          Refine
         </Button>
       </Stack>
     </form>
