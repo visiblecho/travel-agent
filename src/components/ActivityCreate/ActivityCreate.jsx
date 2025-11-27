@@ -2,9 +2,19 @@ import { useContext, useState } from 'react'
 import { useParams, useNavigate, Navigate } from 'react-router'
 
 import { UserContext } from '../../contexts/UserContext.jsx'
-// import { activityCreate } from '../../services/trips.js'
+import { activityCreate } from '../../services/trips.js'
 
-import { Button, Box, Typography, Paper, TextField, Stack } from '@mui/material'
+import {
+  Button,
+  Box,
+  Typography,
+  Paper,
+  TextField,
+  Stack,
+  InputAdornment,
+  IconButton,
+} from '@mui/material'
+import OpenInNewIcon from '@mui/icons-material/OpenInNew'
 
 const ActivityCreate = () => {
   const { user } = useContext(UserContext)
@@ -29,7 +39,7 @@ const ActivityCreate = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      const { data } = await tripCreate(formData)
+      const { data } = await activityCreate(tripId, formData)
       // TODO: Confirm edit
       navigate(`/trips/${tripId}/activities`)
     } catch (error) {
@@ -67,16 +77,10 @@ const ActivityCreate = () => {
           bgcolor: '#F5F5F5',
         }}
       >
-        <Typography
-          className="subheader"
-          variant="h4"
-          align="center"
-          gutterBottom
-        >
-          Capture your dream
+        <Typography variant="h5" align="center" gutterBottom>
+          Experience the Unknown
         </Typography>
         <Stack
-          className="information"
           component="form"
           spacing={2}
           onSubmit={handleSubmit}
@@ -91,23 +95,22 @@ const ActivityCreate = () => {
             onChange={handleChange}
             fullWidth
             required
+            error={!errorData}
+            helperText={errorData.title}
           />
-          {errorData.title && (
-            <p className="error-message">{errorData.title}</p>
-          )}
           <TextField
             label="Description"
             variant="outlined"
             type="text"
+            multiline
+            rows={3}
             name="description"
             value={formData.description}
             onChange={handleChange}
             fullWidth
-            required
+            error={!errorData}
+            helperText={errorData.descirption}
           />
-          {errorData.description && (
-            <p className="error-message">{errorData.descirption}</p>
-          )}
           <TextField
             label="websiteUrl"
             variant="outlined"
@@ -116,10 +119,32 @@ const ActivityCreate = () => {
             value={formData.websiteUrl}
             onChange={handleChange}
             fullWidth
+            error={!errorData}
+            helperText={errorData.websiteUrl}
+            slotProps={{
+              input: {
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      onClick={() => {
+                        if (formData.websiteUrl) {
+                          window.open(
+                            formData.websiteUrl,
+                            '_blank',
+                            'noopener,noreferrer',
+                          )
+                        }
+                      }}
+                      edge="end"
+                      disabled={!formData.mapUrl}
+                    >
+                      <OpenInNewIcon />
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              },
+            }}
           />
-          {errorData.websiteUrl && (
-            <p className="error-message">{errorData.websiteUrl}</p>
-          )}
           <TextField
             label="Location"
             variant="outlined"
@@ -128,11 +153,9 @@ const ActivityCreate = () => {
             value={formData.location}
             onChange={handleChange}
             fullWidth
-            required
+            error={!errorData}
+            helperText={errorData.location}
           />
-          {errorData.mapUrl && (
-            <p className="error-message">{errorData.location}</p>
-          )}
           <TextField
             label="mapUrl"
             variant="outlined"
@@ -141,51 +164,64 @@ const ActivityCreate = () => {
             value={formData.mapUrl}
             onChange={handleChange}
             fullWidth
+            error={!errorData}
+            helperText={errorData.mapUrl}
+            slotProps={{
+              input: {
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      onClick={() => {
+                        if (formData.mapUrl) {
+                          window.open(
+                            formData.mapUrl,
+                            '_blank',
+                            'noopener,noreferrer',
+                          )
+                        }
+                      }}
+                      edge="end"
+                      disabled={!formData.mapUrl}
+                    >
+                      <OpenInNewIcon />
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              },
+            }}
           />
-          {errorData.mapUrl && (
-            <p className="error-message">{errorData.mapUrl}</p>
-          )}
           <TextField
             label="Start Date"
             variant="outlined"
             type="text"
             name="startDate"
+            placeholder="YYY-MM-DD"
             value={formData.startDate}
             onChange={handleChange}
             fullWidth
-            required
+            error={!errorData}
+            helperText={errorData.startDate}
           />
-          {errorData.startDate && (
-            <p className="error-message">{errorData.startDate}</p>
-          )}
           <TextField
             label="End Date"
             variant="outlined"
             type="text"
             name="endDate"
+            placeholder="YYY-MM-DD"
             value={formData.endDate}
             onChange={handleChange}
             fullWidth
-            required
+            error={!errorData}
+            helperText={errorData.endDate}
           />
-          {errorData.endDate && (
-            <p className="error-message">{errorData.endDate}</p>
-          )}
-          <Button
-            type="submit"
-            variant="contained"
-            className="primary"
-            form="tripForm"
-          >
-            Create
-          </Button>
-          <Button
-            variant="contained"
-            className="secondary"
-            onClick={handleReturnToOverview}
-          >
-            Return to Overview
-          </Button>
+          <Stack spacing={2}>
+            <Button type="submit" variant="contained" form="tripForm">
+              Create
+            </Button>
+            <Button variant="outlined" onClick={handleReturnToOverview}>
+              Return to Overview
+            </Button>
+          </Stack>
         </Stack>
       </Paper>
     </Box>

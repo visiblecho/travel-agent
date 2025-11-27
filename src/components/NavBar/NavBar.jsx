@@ -14,33 +14,52 @@ const NavBar = () => {
   }
   */
   return (
-    <Toolbar 
-     sx={{
-      display: 'flex',
-      justifyContent: 'center',
-      maxWidth: '1200px',
-      margin: '0 auto',
-      width: '100%'
-     }}
-     >
-    <Stack spacing={1} sx={{ alignItems: 'center', textAlign: 'center'}}>
-    {/* Brand Logo */}
-     <img src={AppLogo} alt='An airplane and sun composed into a logo' height={150} style={{ marginRight: 8}} />
-     <Typography variant='h4' color='inherit' sx={{ fontWeight: 'bold', }}>
-      Travel Agent
-     </Typography>
-     {/* Username or Tagline */}
-       {user ? (
-      <Typography variant='h6' color='inherit' component={Link} to='/account' sx={{textDecoration: 'none'}} >
-          {user.username}
-      </Typography>
-       ) : (
-        <Typography variant='h6' color='inherit' component={Link} to='/' sx={{textDecoration: 'none'}} >
-        Touch your dreams
-      </Typography>
-       )}
-       </Stack>
-     </Toolbar>
+    <Toolbar
+      sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        maxWidth: '1200px',
+        margin: '0 auto',
+        width: '100%',
+      }}
+    >
+      <Stack spacing={1} sx={{ alignItems: 'center', textAlign: 'center' }}>
+        {/* Brand Logo */}
+        <img
+          src={AppLogo}
+          alt="An airplane and sun composed into a logo"
+          height={150}
+          style={{ marginRight: 8 }}
+        />
+
+        <Typography variant="h4" color="inherit" sx={{ fontWeight: 'bold' }}>
+          Travel Agent
+        </Typography>
+
+        {/* Username or Tagline */}
+        {user ? (
+          <Typography
+            variant="h6"
+            color="inherit"
+            component={Link}
+            to="/account"
+            sx={{ textDecoration: 'none' }}
+          >
+            {user.username}
+          </Typography>
+        ) : (
+          <Typography
+            variant="h6"
+            color="inherit"
+            component={Link}
+            to="/"
+            sx={{ textDecoration: 'none' }}
+          >
+            Touch your dreams
+          </Typography>
+        )}
+      </Stack>
+    </Toolbar>
   )
 }
 

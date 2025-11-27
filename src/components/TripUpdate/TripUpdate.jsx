@@ -4,7 +4,15 @@ import { useParams, useNavigate, Navigate } from 'react-router'
 import { UserContext } from '../../contexts/UserContext.jsx'
 import { tripUpdate, tripShow } from '../../services/trips.js'
 
-import { Button, Box, Typography, Paper, TextField, Stack, CircularProgress } from '@mui/material'
+import {
+  Button,
+  Box,
+  Typography,
+  Paper,
+  TextField,
+  Stack,
+  CircularProgress,
+} from '@mui/material'
 
 const TripUpdate = () => {
   const { user } = useContext(UserContext)
@@ -49,7 +57,7 @@ const TripUpdate = () => {
       // TODO: Confirm edit
       navigate('/trips/')
     } catch (error) {
-      // TODO: Better error handling 
+      // TODO: Better error handling
       console.log(error)
       if (error.response.status === 500) {
         return setErrorData({
@@ -60,150 +68,160 @@ const TripUpdate = () => {
     }
   }
 
-
   const handleReturnToOverview = () => {
     navigate('/trips')
   }
 
-  const handleAddActivities = () => {
-    navigate(`/trips/${tripId}/activities/new`)
+  const handleManageActivities = () => {
+    navigate(`/trips/${tripId}/activities`)
   }
 
   const handleDeleteTrip = () => {
-    console.log('Add Activities')
+    console.log('Delete Trip not implemented')
   }
 
   if (!user) return <Navigate to="/auth/sign-in" />
 
   return (
-      <Box 
+    <Box
       sx={{
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         p: 2,
-        width: '100%'
+        width: '100%',
       }}
+    >
+      <Paper
+        elevation={3}
+        sx={{
+          p: 4,
+          width: { xs: '90%', sm: 400 },
+          maxWidth: 600,
+          bgcolor: '#F5F5F5',
+        }}
       >
-      <Paper 
-      elevation={3}
-      sx={{
-        p: 4,
-        width: { xs: '90%', sm: 400 },
-        maxWidth: 600,
-        bgcolor: '#F5F5F5'
-      }}
-      >
-      <Typography variant='h5' align='center' className="subheader" gutterBottom>
-        Edit your dream</Typography>
+        <Typography
+          variant="h5"
+          align="center"
+
+          gutterBottom
+        >
+          Edit your dream
+        </Typography>
         {isLoading ? (
-      <Box className="information"
-      sx={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        minHeight: 200,
-      }}
-      >
-          <CircularProgress />
-        </Box>
+          <Box
+
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              minHeight: 200,
+            }}
+          >
+            <CircularProgress />
+          </Box>
         ) : (
-      <>
-      <Stack 
-      className='information'
-      component='form'
-      spacing={2}
-      onSubmit={handleSubmit}
-      id='tripForm'
-      >
-              <TextField 
-                      label='Title'
-        variant='outlined'
-        type='text'
-        name='title'
-        value={formData.title}
-        onChange={handleChange}
-        fullWidth
-        required
+          <>
+            <Stack
+              component="form"
+              spacing={2}
+              onSubmit={handleSubmit}
+              id="tripForm"
+            >
+              <TextField
+                label="Title"
+                variant="filled"
+                type="text"
+                name="title"
+                value={formData.title}
+                onChange={handleChange}
+                fullWidth
+                required
               />
               {errorData.title && (
                 <p className="error-message">{errorData.title}</p>
               )}
 
-            <TextField 
-          label='Description'
-          variant='outlined'
-          type='text'
-          name='description'
-          value={formData.description}
-          onChange={handleChange}
-          fullWidth
-        required
-          />
+              <TextField
+                label="Description"
+                variant="filled"
+                type="text"
+                multiline
+                rows={3}
+                name="description"
+                value={formData.description}
+                onChange={handleChange}
+                fullWidth
+                
+              />
               {errorData.description && (
                 <p className="error-message">{errorData.description}</p>
               )}
 
-            <TextField 
-          label='Location'
-          variant='outlined'
-          type='text'
-          name='location'
-          value={formData.location}
-          onChange={handleChange}
-          fullWidth
-          required
-          />
+              <TextField
+                label="Location"
+                variant="filled"
+                type="text"
+                name="location"
+                value={formData.location}
+                onChange={handleChange}
+                fullWidth
+                
+              />
               {errorData.location && (
                 <p className="error-message">{errorData.location}</p>
               )}
-<TextField 
-          label='Start Date'
-          variant='outlined'
-          type='text'
-          name='startDate'
-          value={formData.startDate}
-          onChange={handleChange}
-          fullWidth
-          required
-          />
+              <TextField
+                label="Start Date"
+                variant="filled"
+                type="text"
+                name="startDate"
+                value={formData.startDate}
+                onChange={handleChange}
+                fullWidth
+                
+              />
               {errorData.startDate && (
                 <p className="error-message">{errorData.startDate}</p>
               )}
-<TextField 
-          label='End Date'
-          variant='outlined'
-          type='text'
-          name='endDate'
-          value={formData.endDate}
-          onChange={handleChange}
-          fullWidth
-          required
-          />
+              <TextField
+                label="End Date"
+                variant="filled"
+                type="text"
+                name="endDate"
+                value={formData.endDate}
+                onChange={handleChange}
+                fullWidth
+                
+              />
               {errorData.endDate && (
                 <p className="error-message">{errorData.endDate}</p>
-              
               )}
-        <Stack spacing={1} mt={2} flexWrap='wrap' justifyContent='center'>
-        <Button variant='contained' className="primary" type="submit" form="tripForm" sx={{flex:1, minWidth: 120, fontSize: { xs: '0.7rem', sm: '0.875rem', md: '1rem' }}}>
-          Confirm changes
-        </Button>
-        {/* The following button will be replaced by linking to the ActivityIndex component. From there, new activities can be added. */}
-        <Button variant='contained' className="secondary" onClick={handleAddActivities} sx={{flex:1, minWidth: 120, fontSize: { xs: '0.7rem', sm: '0.875rem', md: '1rem' }}}>
-          Add activity
-        </Button>
-        <Button variant='contained' className="secondary" onClick={handleDeleteTrip} sx={{flex:1, minWidth: 120, fontSize: { xs: '0.7rem', sm: '0.875rem', md: '1rem' }}} disabled>
-          Delete trip
-        </Button>
-        <Button variant='contained' className="secondary" onClick={handleReturnToOverview} sx={{flex:1, minWidth: 120, fontSize: { xs: '0.7rem', sm: '0.875rem', md: '1rem' }}}>
-          Return to Overview
-        </Button>
-      </Stack>
-      </Stack>
-      </>
+              <Stack spacing={1} mt={2} flexWrap="wrap" justifyContent="center">
+                <Button
+                  variant="contained"
+                  className="primary"
+                  type="submit"
+                  form="tripForm"
+                >
+                  Confirm changes
+                </Button>
+                <Button variant="outlined" onClick={handleManageActivities}>
+                  Manage activities
+                </Button>
+                <Button variant="outlined" onClick={handleDeleteTrip} disabled>
+                  Delete trip
+                </Button>
+                <Button variant="outlined" onClick={handleReturnToOverview}>
+                  Return to overview
+                </Button>
+              </Stack>
+            </Stack>
+          </>
         )}
       </Paper>
-      </Box>
+    </Box>
   )
 }
 
