@@ -27,7 +27,7 @@ const SignUp = () => {
     } catch (error) {
       const res = error.response;
       if (!res) {
-        return setErrorData({ message: "Network error. Try again" });
+        return setErrorData({ message: "Network error. Try again." });
       }
       if (res.status === 500) {
         setErrorData({ message: "Something went wrong. Please try again." });

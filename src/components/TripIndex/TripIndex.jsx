@@ -4,10 +4,12 @@ import { useNavigate, Navigate } from 'react-router'
 import { UserContext } from '../../contexts/UserContext.jsx'
 import { tripIndex } from '../../services/trips'
 
+import { Box, Paper, Typography, Stack, Button } from '@mui/material'
+
 import './TripIndex.module.css'
 
 const TripIndex = () => {
-    const { user } = useContext(UserContext)
+  const { user } = useContext(UserContext)
   const [trips, setTrips] = useState([])
   const [isLoading, setIsLoading] = useState(true)
 
@@ -55,37 +57,65 @@ const TripIndex = () => {
 
   return (
     <>
-      <h2 className="subheader">Trips</h2>
-      <div className="information">
-        {isLoading ? (
-          <p>Loading ...</p>
-        ) : (
-          <ul>
-            {trips.map((trip) => {
-              return (
-                <li key={trip._id} onClick={() => handleEditTrip(trip._id)}>
-                  <h3>{trip.title}</h3>
-                  <p>{trip.description}</p>
-                  <p>
-                    {trip.destination}, {trip.country}
-                  </p>
-                  <p>
-                    {trip.startDate}-{trip.endDate}
-                  </p>
-                </li>
-              )
-            })}
-          </ul>
-        )}
-      </div>
-      <div className="actions">
-        <button className="primary" onClick={handleCreateNewTrip}>
-          Create new trip
-        </button>
-        <button className="secondary" onClick={handleReviewPastTrip} disabled>
-          Review past trip
-        </button>
-      </div>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          px: 2,
+          mt: 2,
+          textAlign: 'center',
+        }}
+      >
+        <Box sx={{ mb: 4, textAlign: 'center'}}>
+          <Typography
+            variant="h4"
+            align="center"
+            className="subheader"
+            gutterBottom
+          >
+            Trips
+          </Typography>
+          </Box>
+          {/*Slider with trips */}
+          <div className="information">
+            {isLoading ? (
+              <p>Loading ...</p>
+            ) : (
+              <ul>
+                {trips.map((trip) => {
+                  return (
+                    <li key={trip._id} onClick={() => handleEditTrip(trip._id)}>
+                      <h3>{trip.title}</h3>
+                      <p>{trip.description}</p>
+                      <p>
+                        {trip.destination}, {trip.country}
+                      </p>
+                      <p>
+                        {trip.startDate}-{trip.endDate}
+                      </p>
+                    </li>
+                  )
+                })}
+              </ul>
+            )}
+          </div>
+          <Button
+            variant="contained"
+            className="primary"
+            onClick={handleCreateNewTrip}
+          >
+            Create new trip
+          </Button>
+          <Button
+            variant="contained"
+            className="secondary"
+            onClick={handleReviewPastTrip}
+            disabled
+          >
+            Review past trip
+          </Button>
+      </Box>
     </>
   )
 }
