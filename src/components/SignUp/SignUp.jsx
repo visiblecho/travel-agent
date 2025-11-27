@@ -59,7 +59,7 @@ const SignUp = () => {
         bgcolor: '#F5F5F5'
       }}
       >
-      <Typography variant="h4" align='center'gutterBottom>
+      <Typography variant="h4" textAlign='center' p={3} gutterBottom>
          Create Account
         </Typography>
       <Stack 
@@ -79,7 +79,7 @@ const SignUp = () => {
             required
           />
           {errorData.username && (
-            <p className="error-message">{errorData.username}</p>
+            <Typography sx={{ color: 'error.main', fontWeight: 'medium'}} className="error-message">{errorData.username}</Typography>
           )}
             <TextField
             label='Email'
@@ -92,7 +92,7 @@ const SignUp = () => {
             required
           />
           {errorData.email && (
-            <p className="error-message">{errorData.email}</p>
+            <Typography sx={{ color: 'error.main', fontWeight: 'medium'}} className="error-message">{errorData.email}</Typography>
           )}
           <TextField
             label='Enter Password'
@@ -105,7 +105,7 @@ const SignUp = () => {
             required
           />
           {errorData.password && (
-            <p className="error-message">{errorData.password}</p>
+            <Typography sx={{ color: 'error.main', fontWeight: 'medium'}} className="error-message">{errorData.password}</Typography>
           )}
           <TextField
             label='Confirm Password'
@@ -118,7 +118,7 @@ const SignUp = () => {
             required
           />
           {errorData.confirmPassword && (
-            <p className="error-message">{errorData.confirmPassword}</p>
+            <Typography sx={{ color: 'error.main', fontWeight: 'medium'}} className="error-message">{errorData.confirmPassword}</Typography>
           )}
           <Button type='submit' variant="contained">
           {isLoading ? (
@@ -126,9 +126,9 @@ const SignUp = () => {
           ) : (
             'Create Account'
           )}
-        </Button>
+        </Button >
         {errorData.message && (
-          <p className="error-message">{errorData.message}</p>
+          <Typography sx={{ color: 'error.main'}} className="error-message">{errorData.message}</Typography>
         )}
       </Stack>
       </Paper>

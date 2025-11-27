@@ -3,6 +3,7 @@ import { useParams, useNavigate, Navigate } from 'react-router'
 
 import { UserContext } from '../../contexts/UserContext.jsx'
 import { tripUpdate, tripShow } from '../../services/trips.js'
+import validateDates from '../../services/dateValidation.js'
 
 import {
   Button,
@@ -64,6 +65,11 @@ const TripUpdate = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    const dateErrors = validateDates(formData.startDate, formData.endDate)
+    if (Object.keys(dateErrors).length > 0) {
+    setErrorData(dateErrors)
+    return
+    }
     const submissionData = {
       ...formData, 
       startDate: new Date(formData.startDate).toISOString(),
@@ -120,8 +126,9 @@ const TripUpdate = () => {
       >
         <Typography
           variant="h5"
-          align="center"
+          textAlign="center"
           className="subheader"
+          p={3}
           gutterBottom
         >
           Edit your dream
@@ -172,7 +179,7 @@ const TripUpdate = () => {
                 required
               />
               {errorData.description && (
-                <p className="error-message">{errorData.description}</p>
+                <Typography sx={{ color: 'error.main', fontWeight: 'medium'}} className="error-message">{errorData.description}</Typography>
               )}
 
               <TextField
@@ -186,7 +193,7 @@ const TripUpdate = () => {
                 required
               />
               {errorData.location && (
-                <p className="error-message">{errorData.location}</p>
+                <Typography sx={{ color: 'error.main', fontWeight: 'medium'}} className="error-message">{errorData.location}</Typography>
               )}
               <TextField
                 label="Start Date"
@@ -199,7 +206,7 @@ const TripUpdate = () => {
                 required
               />
               {errorData.startDate && (
-                <p className="error-message">{errorData.startDate}</p>
+                <Typography sx={{ color: 'error.main', fontWeight: 'medium'}} className="error-message">{errorData.startDate}</Typography>
               )}
               <TextField
                 label="End Date"
@@ -212,7 +219,7 @@ const TripUpdate = () => {
                 required
               />
               {errorData.endDate && (
-                <p className="error-message">{errorData.endDate}</p>
+                <Typography sx={{ color: 'error.main', fontWeight: 'medium'}} className="error-message">{errorData.endDate}</Typography>
               )}
               <Stack spacing={1} mt={2} flexWrap="wrap" justifyContent="center">
                 <Button

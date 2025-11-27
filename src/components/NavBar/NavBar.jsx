@@ -18,7 +18,7 @@ const NavBar = () => {
       display: 'flex',
       justifyContent: 'center',
       maxWidth: '1200px',
-      margin: '0 auto',
+      m: '0 auto',
       width: '100%'
      }}
      >
