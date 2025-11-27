@@ -33,6 +33,8 @@ const SignIn = () => {
       setUser(getUserFromToken())
       navigate('/trips');
     } catch (error) {
+      //console.log('Full error response:', error.response)
+      //console.log('Error data:', error.response?.data)
       const res = error.response;
       if (!res) {
         return setErrorData({ message: "Network error. Try again" });
@@ -40,7 +42,9 @@ const SignIn = () => {
       if (res.status === 500) {
         setErrorData({ message: "Something went wrong. Please try again." });
       } else {
-        console.error(res.data.backend);
+            console.error('Frontend errors:', res.data.frontend);
+    console.error('Backend errors:', res.data.backend);
+        //console.error(res.data.backend);
         setErrorData(res.data.frontend);
       }
     } finally {
@@ -51,11 +55,11 @@ const SignIn = () => {
     <>
       <Box 
       sx={{ 
-        minHeight: '100hv',
+        minHeight: '100%',
         display: 'flex', 
         justifyContent: 'center',
         alignItems: 'center',
-        p: 2,
+        p: 4,
       }}>
       <Paper 
       elevation={3}
@@ -65,7 +69,7 @@ const SignIn = () => {
         bgcolor: '#F5F5F5'
       }}
       >
-        <Typography variant="h4" align='center'gutterBottom>
+        <Typography variant="h4" textAlign='center' gutterBottom>
           Sign In
         </Typography>
       <Stack 
@@ -89,10 +93,11 @@ const SignIn = () => {
           )}
           <TextField
             label='Enter Password'
-            vartiant='outlined'
+            variant='outlined'
             type="password"
             name="password"
             id="password"
+            value={formData.password}
             placeholder="Enter Password"
             onChange={handleChange}
             required
@@ -105,7 +110,7 @@ const SignIn = () => {
             <CircularProgress size={24}/>
           ) : (
           'Sign In'
-          )}
+                    )}
         </Button>
         {errorData.message && (
           <p className="error-message">{errorData.message}</p>
