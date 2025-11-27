@@ -7,8 +7,6 @@ import TripSlider from '../Slider/TripSlider.jsx'
 
 import { Box, Typography, Button, CircularProgress } from '@mui/material'
 
-import './TripIndex.module.css'
-
 const TripIndex = () => {
   const { user } = useContext(UserContext)
   const [trips, setTrips] = useState([])

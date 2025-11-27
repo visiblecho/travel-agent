@@ -66,7 +66,7 @@ const TripUpdate = () => {
   }
 
   const handleAddActivities = () => {
-    console.log('Add Activities')
+    navigate(`/trips/${tripId}/activities/new`)
   }
 
   const handleDeleteTrip = () => {
@@ -188,7 +188,8 @@ const TripUpdate = () => {
         <Button variant='contained' className="primary" type="submit" form="tripForm" sx={{flex:1, minWidth: 120, fontSize: { xs: '0.7rem', sm: '0.875rem', md: '1rem' }}}>
           Confirm changes
         </Button>
-        <Button variant='contained' className="secondary" onClick={handleAddActivities} sx={{flex:1, minWidth: 120, fontSize: { xs: '0.7rem', sm: '0.875rem', md: '1rem' }}} disabled>
+        {/* The following button will be replaced by linking to the ActivityIndex component. From there, new activities can be added. */}
+        <Button variant='contained' className="secondary" onClick={handleAddActivities} sx={{flex:1, minWidth: 120, fontSize: { xs: '0.7rem', sm: '0.875rem', md: '1rem' }}}>
           Add activity
         </Button>
         <Button variant='contained' className="secondary" onClick={handleDeleteTrip} sx={{flex:1, minWidth: 120, fontSize: { xs: '0.7rem', sm: '0.875rem', md: '1rem' }}} disabled>
