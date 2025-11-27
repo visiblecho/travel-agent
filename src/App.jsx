@@ -1,5 +1,6 @@
-import './App.css'
 import { Routes, Route } from 'react-router'
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 //* Page Components
 import NavBar from './components/NavBar/NavBar'

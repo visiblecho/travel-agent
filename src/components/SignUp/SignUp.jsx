@@ -1,4 +1,3 @@
-import "./SignUp.css";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { signUpService } from "../../services/auth";
@@ -40,7 +39,7 @@ const SignUp = () => {
   };
   return (
     <>
-          <Box 
+      <Box 
       sx={{ 
         minHeight: '100hv',
         display: 'flex', 
@@ -57,7 +56,7 @@ const SignUp = () => {
       }}
       >
       <Typography variant="h4" align='center'gutterBottom>
-         Create an Account
+         Create Account
         </Typography>
       <Stack 
         component='form'

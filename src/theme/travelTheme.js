@@ -9,7 +9,7 @@ let travelTheme = createTheme({
         main: '#FF7043',      // 
     }, 
         background: {
-            default: '#E0F2F1',
+            default: '#eae8dfff',
             paper: '#FFFFF',
         },
         error: {

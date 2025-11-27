@@ -1,10 +1,12 @@
-import './Home.css'
 import { UserContext } from '../../contexts/UserContext'
 import { useContext } from 'react'
 import { Link } from 'react-router'
 import TripIndex from '../TripIndex/TripIndex'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router'
+
+import { Container, Box, Typography, Stack, Button } from '@mui/material'
+import PhotoSlider from '../Slider/PhotoSlider'
 
 const Home = () => {
     const { user } = useContext(UserContext)
@@ -14,20 +16,38 @@ const Home = () => {
     },[user])
 
     return (
-        <main className='home-page'>
+        <>
             {!user ? (
-                <div className='logged-out-home'>
-                    <h1>Logo</h1>
-                    <h1>Your next trip, realized</h1>
-                    <p>Images of trips (placeholders)</p>
-                <div className='auth-buttons'>
-                    <Link to='/auth/sign-in'><button>Sign In</button></Link>
-                    <Link to='/auth/sign-up'><button>Create Account</button></Link>
-                </div>
-                </div>
+                <Box sx={{ 
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    px: 2, 
+                    mt: 2,
+                    textAlign: 'center',
+                }}>
+                    <Box sx={{ mb: 4, textAlign: 'center'}}>
+                    <Typography variant='h4'>
+                    Your next trip, realized
+                    </Typography>
+                    </Box>
+                    {/*Slider with photos */}
+                    <Box sx={{ width: '100%', maxWidth: 800, mb: 4}}>
+                        <PhotoSlider/>
+                        </Box>
+                       {/* Action Buttons */} 
+                    <Stack direction='row' spacing={2}>
+                        <Button component={Link} to='/auth/sign-in' variant='contained' >
+                        Sign In
+                        </Button>
+                        <Button component={Link} to='/auth/sign-up' variant='contained' >
+                        Create Account
+                        </Button>
+                    </Stack>
+                    </Box>
             ) : null
         }
-        </main>
+            </>
     )
 }
 

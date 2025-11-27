@@ -1,10 +1,20 @@
 import { Link } from 'react-router'
+import { Box, Typography, Button } from '@mui/material'
 
 const NotFound = () => {
   return (
     <>
-      <h1>Oops! Page not found.</h1>
-      <Link to="/">Back to home</Link>
+      <Box sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        px: 2,
+        mt: 2,
+        textAlign: 'center',
+      }}>
+      <Typography variant='h5' sx={{ mb: 2}}>Oops! Page not found.</Typography>
+      <Button  component={Link} variant='contained' to="/">Back to home</Button>
+      </Box>
     </>
   )
 }
