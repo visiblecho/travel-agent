@@ -41,23 +41,25 @@ const TripSlider = ({ trips }) => {
           <Paper
             elevation={3}
             onClick={() => onTripSelect(trip._id)}
-            sx={{
-              width: '100%',
-              maxWidth: 300,
-              minHeight: 180,
-              maxHeight: 180,
-              p: 2,
-              borderRadius: 4,
-              bgcolor: '#f6f8f9ff',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              '&:hover': {
-                transform: 'scale(1.05)',
-                boxShadow: '0 6px 25px rgba(0,0,0,0.15)',
-                cursor: 'pointer',
-              },
-            }}
+sx={{
+  width: '100%',
+  maxWidth: 300,
+  minHeight: 180,
+  maxHeight: 180,
+  p: 2,
+  mt: 2,
+  borderRadius: 4,
+  bgcolor: '#f6f8f9ff',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  '&:hover': {
+    transform: 'scale(1.05)',
+    cursor: 'pointer',
+    boxShadow: 2,
+  },
+}}
+
             className="trip-slide"
           >
             {/*Trip Info*/}

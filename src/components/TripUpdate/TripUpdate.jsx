@@ -3,6 +3,7 @@ import { useParams, useNavigate, Navigate } from 'react-router'
 
 import { UserContext } from '../../contexts/UserContext.jsx'
 import { tripUpdate, tripShow } from '../../services/trips.js'
+import validateDates from '../../services/dateValidation.js'
 
 import {
   Button,
@@ -15,6 +16,14 @@ import {
 } from '@mui/material'
 
 const TripUpdate = () => {
+  const formatDateForTextField = (isoDate) => {
+    if (!isoDate) return ''
+    const date = new Date(isoDate)
+    const year = date.getFullYear()
+    const month = String(date.getMonth() + 1).padStart(2, '0')
+    const day = String(date.getDate()).padStart(2, '0')
+    return `${year}-${month}-${day}`
+  }
   const { user } = useContext(UserContext)
   const [formData, setFormData] = useState({})
   const [isLoading, setIsLoading] = useState(true)
@@ -26,7 +35,11 @@ const TripUpdate = () => {
     const getData = async () => {
       try {
         const { data } = await tripShow(tripId)
-        setFormData(data)
+        setFormData({
+          ...data,
+          startDate: formatDateForTextField(data.startDate),
+          endDate: formatDateForTextField(data.endDate),
+        })
       } catch (error) {
         // TODO: Better error handling
         console.log(error)
@@ -52,8 +65,18 @@ const TripUpdate = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    const dateErrors = validateDates(formData.startDate, formData.endDate)
+    if (Object.keys(dateErrors).length > 0) {
+    setErrorData(dateErrors)
+    return
+    }
+    const submissionData = {
+      ...formData, 
+      startDate: new Date(formData.startDate).toISOString(),
+      endDate: new Date(formData.endDate).toISOString(),
+    }
     try {
-      await tripUpdate(tripId, formData)
+      await tripUpdate(tripId, submissionData)
       // TODO: Confirm edit
       navigate('/trips/')
     } catch (error) {
@@ -90,7 +113,17 @@ const TripUpdate = () => {
         alignItems: 'center',
         p: 2,
         width: '100%',
+        width: '100%',
       }}
+    >
+      <Paper
+        elevation={3}
+        sx={{
+          p: 4,
+          width: { xs: '90%', sm: 400 },
+          maxWidth: 600,
+          bgcolor: '#F5F5F5',
+        }}
     >
       <Paper
         elevation={3}
@@ -156,7 +189,7 @@ const TripUpdate = () => {
                 
               />
               {errorData.description && (
-                <p className="error-message">{errorData.description}</p>
+                <Typography sx={{ color: 'error.main', fontWeight: 'medium'}} className="error-message">{errorData.description}</Typography>
               )}
 
               <TextField
@@ -170,7 +203,7 @@ const TripUpdate = () => {
                 
               />
               {errorData.location && (
-                <p className="error-message">{errorData.location}</p>
+                <Typography sx={{ color: 'error.main', fontWeight: 'medium'}} className="error-message">{errorData.location}</Typography>
               )}
               <TextField
                 label="Start Date"
@@ -183,7 +216,7 @@ const TripUpdate = () => {
                 
               />
               {errorData.startDate && (
-                <p className="error-message">{errorData.startDate}</p>
+                <Typography sx={{ color: 'error.main', fontWeight: 'medium'}} className="error-message">{errorData.startDate}</Typography>
               )}
               <TextField
                 label="End Date"
@@ -221,6 +254,7 @@ const TripUpdate = () => {
           </>
         )}
       </Paper>
+    </Box>
     </Box>
   )
 }

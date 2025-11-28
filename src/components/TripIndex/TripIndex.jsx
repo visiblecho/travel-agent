@@ -55,53 +55,59 @@ const TripIndex = () => {
   if (!user) return <Navigate to="/auth/sign-in" />
 
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        px: 2,
-        mt: 2,
-        textAlign: 'center',
-      }}
-    >
-      <Box sx={{ mb: 4, textAlign: 'center' }}>
-        <Typography
-          variant="h4"
-          align="center"
-          className="subheader"
-          gutterBottom
-          sx={{ mb: 4 }}
-        >
-          Trips
-        </Typography>
-      </Box>
-      {/* Loading Spinner */}
-      {isLoading ? (
-        <Box sx={{ mt: 6 }}>
-          <CircularProgress size={50} />
-          <Typography sx={{ mt: 2, color: 'gray' }}>
-            Loading trips ...
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          px: 2,
+          m: 2,
+          textAlign: 'center',
+        }}
+      >
+        <Box sx={{ mb: 4, textAlign: 'center' }}>
+          <Typography
+            variant="h4"
+            align="center"
+            className="subheader"
+            gutterBottom
+            sx={{ mb: 4}}
+          >
+            Trips
           </Typography>
         </Box>
-      ) : (
+        {/* Loading Spinner */}
+          {isLoading ? (
+            <Box sx={{ mt: 6 }}>
+              <CircularProgress size={50}/>
+            <Typography sx={{ mt: 2, color: 'gray'}}>Loading trips ...</Typography>
+            </Box>
+          ) : (
         <>
-          {/*Slider with trips */}
-          <Box sx={{ width: '100%', maxWidth: 800, mb: 4 }}>
-            <TripSlider trips={trips} />
-          </Box>
+        {/*Slider with trips */}
+        <Box sx={{ width: '100%', maxWidth: 800, mb: 4 }}>
+          {trips.length === 0 ? (
+            <Typography>No trips created yet! Create your first trip below!</Typography>
+          ) : (
+          <TripSlider trips={trips} />
+          )}
+        </Box>
         </>
-      )}
-      {/* Buttons */}
-      <Stack spacing={1} mt={2} flexWrap="wrap" justifyContent="center">
-        <Button variant="contained" onClick={handleCreateNewTrip}>
-          Create trip
+          )}
+        {/* Buttons */}
+        <Stack direction='row' spacing={2} sx={{ mt: 2}}>
+        <Button
+          variant="contained"
+          className="primary"
+          onClick={handleCreateNewTrip}
+        >
+          Create new trip
         </Button>
         <Button variant="outlined" onClick={handleReviewPastTrip} disabled>
           Review trip
         </Button>
-      </Stack>
-    </Box>
+        </Stack>
+      </Box>
   )
 }
 

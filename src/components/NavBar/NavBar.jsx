@@ -3,8 +3,7 @@ import { UserContext } from '../../contexts/UserContext'
 import { useContext } from 'react'
 import AppLogo from '../../assets/App-Logo-2.png'
 
-import { AppBar, Toolbar, Typography, Button, Box, Stack } from '@mui/material'
-import { textTransform } from '@mui/system'
+import { Toolbar, Typography, Stack } from '@mui/material'
 
 const NavBar = () => {
   const { user } = useContext(UserContext)
@@ -31,11 +30,11 @@ const NavBar = () => {
           height={150}
           style={{ marginRight: 8 }}
         />
-
+        {/*}
         <Typography variant="h4" color="inherit" sx={{ fontWeight: 'bold' }}>
           Travel Agent
         </Typography>
-
+        */}
         {/* Username or Tagline */}
         {user ? (
           <Typography
