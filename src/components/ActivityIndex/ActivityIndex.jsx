@@ -28,32 +28,37 @@ const ActivityIndex = () => {
   const [isLoading, setIsLoading] = useState(true)
   const navigate = useNavigate()
 
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const { data } = await activityIndex(tripId)
-        setActivities(data)
-      } catch (error) {
-        // TODO: Better error handling
-        console.log(error)
-        const { status, data } = error.response
-        if (status === 500) {
-          setErrorData({ message: 'Something went wrong. Please try again.' })
-        } else if (status === 404) {
-          navigate('/page-not-found')
-        } else {
-          setErrorData(data)
-        }
-      } finally {
-        setIsLoading(false)
+  const fetchActivities = async () => {
+    setIsLoading(true)
+    try {
+      const { data } = await activityIndex(tripId)
+      setActivities(data)
+    } catch (error) {
+      console.log(error)
+      const { status, data } = error.response || {}
+      if (status === 500) {
+        setErrorData({ message: 'Something went wrong. Please try again.' })
+      } else if (status === 404) {
+        navigate('/page-not-found')
+      } else {
+        setErrorData(data)
       }
+    } finally {
+      setIsLoading(false)
     }
-    getData()
+  }
+
+  useEffect(() => {
+    fetchActivities()
   }, [navigate])
 
   const handleAddExpertActivity = async () => {
-    const { data } = await activityPropose(tripId)
-    setActivities([...activities, ...data.trip.activities])
+    try {
+      await activityPropose(tripId)
+      await fetchActivities()
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   if (!user) return <Navigate to="/auth/sign-in" />
