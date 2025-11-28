@@ -66,6 +66,30 @@ export const activityIndex = (tripId) => {
   })
 }
 
+export const activityShow = (tripId, activityId) => {
+  return api.get(`/${tripId}/activities/${activityId}`, {
+    headers: {
+      Authorization: `Bearer ${getToken()}`,
+    },
+  })
+}
+
+export const activityUpdate = (tripId, activityId, formData) => {
+  return api.put(`/${tripId}/activities/${activityId}`, formData, {
+    headers: {
+      Authorization: `Bearer ${getToken()}`,
+    },
+  })
+}
+
+export const activityDelete = (tripId, activityId) => {
+  return api.delete(`/${tripId}/activities/${activityId}`, {
+    headers: {
+      Authorization: `Bearer ${getToken()}`,
+    },
+  })
+}
+
 export const activityPropose = (tripId) => {
   return api.get(`/${tripId}/propose`, {
     headers: {

@@ -111,40 +111,7 @@ const ActivityCreate = () => {
             error={!errorData}
             helperText={errorData.descirption}
           />
-          <TextField
-            label="websiteUrl"
-            variant="outlined"
-            type="text"
-            name="websiteUrl"
-            value={formData.websiteUrl}
-            onChange={handleChange}
-            fullWidth
-            error={!errorData}
-            helperText={errorData.websiteUrl}
-            slotProps={{
-              input: {
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <IconButton
-                      onClick={() => {
-                        if (formData.websiteUrl) {
-                          window.open(
-                            formData.websiteUrl,
-                            '_blank',
-                            'noopener,noreferrer',
-                          )
-                        }
-                      }}
-                      edge="end"
-                      disabled={!formData.mapUrl}
-                    >
-                      <OpenInNewIcon />
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              },
-            }}
-          />
+          
           <TextField
             label="Location"
             variant="outlined"
