@@ -29,8 +29,6 @@ const Account = () => {
           <Typography variant="h6" sx={{ mt: 2, mb: 2 }}>
             Account Management
           </Typography>
-          {/* <h3>Your Trips</h3>
-      <p>Possible list of added trips below</p> */}
           <Stack direction="row" spacing={2}>
             <Button variant="contained" disabled>
               Edit Account

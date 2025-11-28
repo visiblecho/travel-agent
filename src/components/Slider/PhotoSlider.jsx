@@ -9,7 +9,8 @@ import Venice from '../../assets/Venice.jpeg'
 const PhotoSlider = () => {
     const settings = {
         infinite: true, 
-        speed: 500, 
+        speed: 2000, 
+        autoplay: true,
         slidesToShow: 1,
         slidesToScroll: 1,
         centerMode: true,
