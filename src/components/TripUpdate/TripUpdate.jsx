@@ -67,11 +67,11 @@ const TripUpdate = () => {
     e.preventDefault()
     const dateErrors = validateDates(formData.startDate, formData.endDate)
     if (Object.keys(dateErrors).length > 0) {
-    setErrorData(dateErrors)
-    return
+      setErrorData(dateErrors)
+      return
     }
     const submissionData = {
-      ...formData, 
+      ...formData,
       startDate: new Date(formData.startDate).toISOString(),
       endDate: new Date(formData.endDate).toISOString(),
     }
@@ -124,27 +124,12 @@ const TripUpdate = () => {
           maxWidth: 600,
           bgcolor: '#F5F5F5',
         }}
-    >
-      <Paper
-        elevation={3}
-        sx={{
-          p: 4,
-          width: { xs: '90%', sm: 400 },
-          maxWidth: 600,
-          bgcolor: '#F5F5F5',
-        }}
       >
-        <Typography
-          variant="h5"
-          align="center"
-
-          gutterBottom
-        >
+        <Typography variant="h5" align="center" gutterBottom>
           Edit your dream
         </Typography>
         {isLoading ? (
           <Box
-
             sx={{
               display: 'flex',
               justifyContent: 'center',
@@ -186,10 +171,14 @@ const TripUpdate = () => {
                 value={formData.description}
                 onChange={handleChange}
                 fullWidth
-                
               />
               {errorData.description && (
-                <Typography sx={{ color: 'error.main', fontWeight: 'medium'}} className="error-message">{errorData.description}</Typography>
+                <Typography
+                  sx={{ color: 'error.main', fontWeight: 'medium' }}
+                  className="error-message"
+                >
+                  {errorData.description}
+                </Typography>
               )}
 
               <TextField
@@ -200,10 +189,14 @@ const TripUpdate = () => {
                 value={formData.location}
                 onChange={handleChange}
                 fullWidth
-                
               />
               {errorData.location && (
-                <Typography sx={{ color: 'error.main', fontWeight: 'medium'}} className="error-message">{errorData.location}</Typography>
+                <Typography
+                  sx={{ color: 'error.main', fontWeight: 'medium' }}
+                  className="error-message"
+                >
+                  {errorData.location}
+                </Typography>
               )}
               <TextField
                 label="Start Date"
@@ -213,10 +206,14 @@ const TripUpdate = () => {
                 value={formData.startDate}
                 onChange={handleChange}
                 fullWidth
-                
               />
               {errorData.startDate && (
-                <Typography sx={{ color: 'error.main', fontWeight: 'medium'}} className="error-message">{errorData.startDate}</Typography>
+                <Typography
+                  sx={{ color: 'error.main', fontWeight: 'medium' }}
+                  className="error-message"
+                >
+                  {errorData.startDate}
+                </Typography>
               )}
               <TextField
                 label="End Date"
@@ -226,7 +223,6 @@ const TripUpdate = () => {
                 value={formData.endDate}
                 onChange={handleChange}
                 fullWidth
-                
               />
               {errorData.endDate && (
                 <p className="error-message">{errorData.endDate}</p>
@@ -254,7 +250,6 @@ const TripUpdate = () => {
           </>
         )}
       </Paper>
-    </Box>
     </Box>
   )
 }
