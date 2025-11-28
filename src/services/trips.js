@@ -91,7 +91,7 @@ export const activityDelete = (tripId, activityId) => {
 }
 
 export const activityPropose = (tripId) => {
-  return api.get(`/${tripId}/propose`, {
+  return api.get(`/${tripId}/activities/propose`, {
     headers: {
       Authorization: `Bearer ${getToken()}`,
     },
