@@ -20,7 +20,7 @@ let travelTheme = createTheme({
     },
     },
     typography: {
-        fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+        fontFamily: '"Poppins", "Helvetica", "Arial", sans-serif',
         h1: {
             fontSize: '6rem',
             fontWeight: 300,

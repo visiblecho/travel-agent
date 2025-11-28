@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { signUpService } from "../../services/auth";
 
-import { Typography, TextField, Button, Box, Stack, Paper } from "@mui/material";
+import { Typography, TextField, Button, Box, Stack, Paper, CircularProgress } from "@mui/material";
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -13,6 +13,7 @@ const SignUp = () => {
   });
   const [errorData, setErrorData] = useState({});
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -21,6 +22,7 @@ const SignUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
       await signUpService(formData);
       navigate("/auth/sign-in");
@@ -35,6 +37,8 @@ const SignUp = () => {
         console.error(res.data.backend);
         setErrorData(res.data.frontend);
       }
+    } finally {
+      setIsLoading(false)
     }
   };
   return (
@@ -55,7 +59,7 @@ const SignUp = () => {
         bgcolor: '#F5F5F5'
       }}
       >
-      <Typography variant="h4" align='center'gutterBottom>
+      <Typography variant="h4" textAlign='center' p={3} gutterBottom>
          Create Account
         </Typography>
       <Stack 
@@ -75,7 +79,7 @@ const SignUp = () => {
             required
           />
           {errorData.username && (
-            <p className="error-message">{errorData.username}</p>
+            <Typography sx={{ color: 'error.main', fontWeight: 'medium'}} className="error-message">{errorData.username}</Typography>
           )}
             <TextField
             label='Email'
@@ -88,7 +92,7 @@ const SignUp = () => {
             required
           />
           {errorData.email && (
-            <p className="error-message">{errorData.email}</p>
+            <Typography sx={{ color: 'error.main', fontWeight: 'medium'}} className="error-message">{errorData.email}</Typography>
           )}
           <TextField
             label='Enter Password'
@@ -101,7 +105,7 @@ const SignUp = () => {
             required
           />
           {errorData.password && (
-            <p className="error-message">{errorData.password}</p>
+            <Typography sx={{ color: 'error.main', fontWeight: 'medium'}} className="error-message">{errorData.password}</Typography>
           )}
           <TextField
             label='Confirm Password'
@@ -114,13 +118,17 @@ const SignUp = () => {
             required
           />
           {errorData.confirmPassword && (
-            <p className="error-message">{errorData.confirmPassword}</p>
+            <Typography sx={{ color: 'error.main', fontWeight: 'medium'}} className="error-message">{errorData.confirmPassword}</Typography>
           )}
           <Button type='submit' variant="contained">
-          Create Account
-        </Button>
+          {isLoading ? (
+            <CircularProgress size={24} /> 
+          ) : (
+            'Create Account'
+          )}
+        </Button >
         {errorData.message && (
-          <p className="error-message">{errorData.message}</p>
+          <Typography sx={{ color: 'error.main'}} className="error-message">{errorData.message}</Typography>
         )}
       </Stack>
       </Paper>

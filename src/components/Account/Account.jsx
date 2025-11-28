@@ -50,7 +50,6 @@ const Account = () => {
         </>
       ) : (
         <>
-          <Typography variant="h5" sx={{mb: 2}}>Signed Out</Typography>
           <Stack direction='row' spacing={2}>
           <Button component={Link} to="/auth/sign-in" variant="contained">
             Sign In

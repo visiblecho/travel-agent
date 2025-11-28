@@ -3,6 +3,7 @@ import { useParams, useNavigate, Navigate } from 'react-router'
 
 import { UserContext } from '../../contexts/UserContext.jsx'
 import { tripCreate } from '../../services/trips.js'
+import validateDates from '../../services/dateValidation.js'
 
 import { Button, Box, Typography, Paper, TextField, Stack } from '@mui/material'
 
@@ -26,9 +27,19 @@ const TripCreate = () => {
   }
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
+    const dateErrors = validateDates(formData.startDate, formData.endDate)
+    if (Object.keys(dateErrors).length > 0) {
+      setErrorData(dateErrors)
+      return
+    }
+    const dateFormConversion = {
+      ...formData, 
+      startDate: new Date(formData.startDate).toISOString(),
+      endDate: new Date(formData.endDate).toISOString()
+    }
     try {
-      const { data } = await tripCreate(formData)
+      const { data } = await tripCreate(dateFormConversion)
       // TODO: Confirm edit
       navigate('/trips/')
     } catch (error) {
@@ -70,7 +81,7 @@ const TripCreate = () => {
         bgcolor: '#F5F5F5'
       }}
       >
-      <Typography className='subheader' variant='h4' align='center' gutterBottom>
+      <Typography className='subheader' variant='h4' align='center' p={2} gutterBottom>
       Capture your dream
       </Typography>
       <Stack 
@@ -91,7 +102,7 @@ const TripCreate = () => {
         required
         />
             {errorData.title && (
-              <p className="error-message">{errorData.title}</p>
+              <Typography sx={{ color: 'error.main', fontWeight: 'medium'}} className="error-message">{errorData.title}</Typography>
             )}
           <TextField 
           label='Description'
@@ -104,7 +115,7 @@ const TripCreate = () => {
         required
           />
             {errorData.description && (
-              <p className="error-message">{errorData.descirption}</p>
+              <Typography sx={{ color: 'error.main', fontWeight: 'medium'}} className="error-message">{errorData.descirption}</Typography>
             )}
           <TextField 
           label='Location'
@@ -117,33 +128,35 @@ const TripCreate = () => {
           required
           />
             {errorData.location && (
-              <p className="error-message">{errorData.location}</p>
+              <Typography sx={{ color: 'error.main', fontWeight: 'medium'}} className="error-message">{errorData.location}</Typography>
             )}
           <TextField 
           label='Start Date'
           variant='outlined'
-          type='text'
+          type='date'
           name='startDate'
           value={formData.startDate}
           onChange={handleChange}
           fullWidth
           required
+          focused
           />
             {errorData.startDate && (
-              <p className="error-message">{errorData.startDate}</p>
+              <Typography sx={{ color: 'error.main', fontWeight: 'medium'}} className="error-message">{errorData.startDate}</Typography>
             )}
           <TextField 
           label='End Date'
           variant='outlined'
-          type='text'
+          type='date'
           name='endDate'
           value={formData.endDate}
           onChange={handleChange}
           fullWidth
           required
+          focused
           />
             {errorData.endDate && (
-              <p className="error-message">{errorData.endDate}</p>
+              <Typography sx={{ color: 'error.main', fontWeight: 'medium'}} className="error-message">{errorData.endDate}</Typography>
             )}
       <Button type='submit' variant='contained' className='primary' form='tripForm'>
           Create
