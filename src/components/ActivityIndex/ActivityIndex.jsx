@@ -80,7 +80,7 @@ const ActivityIndex = () => {
           }}
         >
           <Typography variant="h5" align="center" gutterBottom>
-            Experience the Unknown
+            Add Activities
           </Typography>
           {isLoading ? (
             <Box

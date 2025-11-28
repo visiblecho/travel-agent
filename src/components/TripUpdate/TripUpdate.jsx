@@ -126,7 +126,7 @@ const TripUpdate = () => {
         }}
       >
         <Typography variant="h5" align="center" gutterBottom>
-          Edit your dream
+          Trip
         </Typography>
         {isLoading ? (
           <Box
@@ -158,7 +158,7 @@ const TripUpdate = () => {
                 required
               />
               {errorData.title && (
-                <p className="error-message">{errorData.title}</p>
+                <Typography sx={{ color: 'error.main', fontWeight: 'medium' }} className="error-message">{errorData.title}</Typography>
               )}
 
               <TextField
@@ -201,7 +201,7 @@ const TripUpdate = () => {
               <TextField
                 label="Start Date"
                 variant="filled"
-                type="text"
+                type="date"
                 name="startDate"
                 value={formData.startDate}
                 onChange={handleChange}
@@ -218,14 +218,14 @@ const TripUpdate = () => {
               <TextField
                 label="End Date"
                 variant="filled"
-                type="text"
+                type="date"
                 name="endDate"
                 value={formData.endDate}
                 onChange={handleChange}
                 fullWidth
               />
               {errorData.endDate && (
-                <p className="error-message">{errorData.endDate}</p>
+                <Typography sx={{ color: 'error.main', fontWeight: 'medium' }} className="error-message">{errorData.endDate}</Typography>
               )}
               <Stack spacing={1} mt={2} flexWrap="wrap" justifyContent="center">
                 <Button
@@ -234,16 +234,16 @@ const TripUpdate = () => {
                   type="submit"
                   form="tripForm"
                 >
-                  Confirm changes
+                  Confirm
                 </Button>
                 <Button variant="outlined" onClick={handleManageActivities}>
-                  Manage activities
+                  Activities
                 </Button>
                 <Button variant="outlined" onClick={handleDeleteTrip} disabled>
-                  Delete trip
+                  Delete
                 </Button>
                 <Button variant="outlined" onClick={handleReturnToOverview}>
-                  Return to overview
+                  Return
                 </Button>
               </Stack>
             </Stack>

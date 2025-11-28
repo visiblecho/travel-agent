@@ -93,7 +93,7 @@ const TripCreate = () => {
       >
         <TextField
         label='Title'
-        variant='outlined'
+        variant='filled'
         type='text'
         name='title'
         value={formData.title}
@@ -106,39 +106,36 @@ const TripCreate = () => {
             )}
           <TextField 
           label='Description'
-          variant='outlined'
-          type='text'
+          variant='filled'
+          multiline
+          rows={3}
           name='description'
           value={formData.description}
           onChange={handleChange}
           fullWidth
-        required
           />
             {errorData.description && (
               <Typography sx={{ color: 'error.main', fontWeight: 'medium'}} className="error-message">{errorData.descirption}</Typography>
             )}
           <TextField 
           label='Location'
-          variant='outlined'
+          variant='filled'
           type='text'
           name='location'
           value={formData.location}
           onChange={handleChange}
           fullWidth
-          required
           />
             {errorData.location && (
               <Typography sx={{ color: 'error.main', fontWeight: 'medium'}} className="error-message">{errorData.location}</Typography>
             )}
           <TextField 
           label='Start Date'
-          variant='outlined'
+          variant='filled'
           type='date'
           name='startDate'
           value={formData.startDate}
           onChange={handleChange}
-          fullWidth
-          required
           focused
           />
             {errorData.startDate && (
@@ -146,13 +143,11 @@ const TripCreate = () => {
             )}
           <TextField 
           label='End Date'
-          variant='outlined'
+          variant='filled'
           type='date'
           name='endDate'
           value={formData.endDate}
           onChange={handleChange}
-          fullWidth
-          required
           focused
           />
             {errorData.endDate && (

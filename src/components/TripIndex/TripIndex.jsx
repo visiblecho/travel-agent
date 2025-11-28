@@ -73,7 +73,7 @@ const TripIndex = () => {
             gutterBottom
             sx={{ mb: 4}}
           >
-            Trips
+            Experience Your Dream
           </Typography>
         </Box>
         {/* Loading Spinner */}
