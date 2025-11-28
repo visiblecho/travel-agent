@@ -147,7 +147,7 @@ const ActivityIndex = () => {
                   </AccordionDetails>
                 </Accordion>
               ))}
-              <ButtonGroup orientation="vertical" variant="outlined">
+              <ButtonGroup orientation="vertical" variant="outlined" sx={{ mt: 2}}>
                 <Button
                   variant="contained"
                   onClick={() => navigate(`/trips/${tripId}/activities/new`)}
