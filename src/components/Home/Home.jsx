@@ -5,7 +5,7 @@ import TripIndex from '../TripIndex/TripIndex'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router'
 
-import { Container, Box, Typography, Stack, Button } from '@mui/material'
+import { Container, Box, Typography, Stack, Button, ButtonGroup } from '@mui/material'
 import PhotoSlider from '../Slider/PhotoSlider'
 
 const Home = () => {
@@ -36,14 +36,14 @@ const Home = () => {
                         <PhotoSlider/>
                         </Box>
                        {/* Action Buttons */} 
-                    <Stack direction='row' spacing={1}>
+                    <ButtonGroup orientation="vertical" variant="outlined">
                         <Button component={Link} to='/auth/sign-in' variant='contained' >
                         Sign In
                         </Button>
-                        <Button component={Link} to='/auth/sign-up' variant='contained' >
+                        <Button component={Link} to='/auth/sign-up'>
                         Create Account
                         </Button>
-                    </Stack>
+                    </ButtonGroup>
                     </Box>
             ) : null
         }

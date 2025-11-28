@@ -5,7 +5,7 @@ import { UserContext } from '../../contexts/UserContext.jsx'
 import { tripIndex } from '../../services/trips'
 import TripSlider from '../Slider/TripSlider.jsx'
 
-import { Box, Typography, Button, CircularProgress, Stack } from '@mui/material'
+import { Box, Typography, Button, CircularProgress, ButtonGroup } from '@mui/material'
 
 const TripIndex = () => {
   const { user } = useContext(UserContext)
@@ -95,7 +95,7 @@ const TripIndex = () => {
         </>
           )}
         {/* Buttons */}
-        <Stack direction='row' spacing={2} sx={{ mt: 2}}>
+        <ButtonGroup orientation="vertical" variant="outlined">
         <Button
           variant="contained"
           className="primary"
@@ -103,10 +103,10 @@ const TripIndex = () => {
         >
           Create new trip
         </Button>
-        <Button variant="outlined" onClick={handleReviewPastTrip} disabled>
+        <Button onClick={handleReviewPastTrip} disabled>
           Review trip
         </Button>
-        </Stack>
+        </ButtonGroup>
       </Box>
   )
 }

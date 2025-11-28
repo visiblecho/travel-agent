@@ -84,11 +84,11 @@ const SignIn = () => {
           <Stack component="form" spacing={2} onSubmit={handleSubmit}>
             <TextField
               label="Username"
-              variant="outlined"
+              variant="filled"
               type="text"
               name="username"
               value={formData.username}
-              placeholder="Username"
+              
               onChange={handleChange}
               fullWidth
               required
@@ -97,13 +97,13 @@ const SignIn = () => {
               <Typography sx={{ color: 'error.main', fontWeight: 'medium'}} className="error-message">{errorData.username}</Typography>
             )}
             <TextField
-              label="Enter Password"
-              variant="outlined"
+              label="Password"
+              variant="filled"
               type="password"
               name="password"
               id="password"
               value={formData.password}
-              placeholder="Enter Password"
+              
               onChange={handleChange}
               required
             />

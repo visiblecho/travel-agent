@@ -69,11 +69,11 @@ const SignUp = () => {
       >
         <TextField
             label='Username'
-            variant='outlined'
+            variant='filled'
             type="text"
             name="username"
             value={formData.username}
-            placeholder="Username"
+            
             onChange={handleChange}
             fullWidth
             required
@@ -83,11 +83,11 @@ const SignUp = () => {
           )}
             <TextField
             label='Email'
-            vartiant='outlined'
+            variant='filled'
             type="email"
             name="email"
             id="email"
-            placeholder="Email"
+            
             onChange={handleChange}
             required
           />
@@ -96,11 +96,11 @@ const SignUp = () => {
           )}
           <TextField
             label='Enter Password'
-            vartiant='outlined'
+            variant='filled'
             type="password"
             name="password"
             id="password"
-            placeholder="Enter Password"
+            
             onChange={handleChange}
             required
           />
@@ -109,11 +109,11 @@ const SignUp = () => {
           )}
           <TextField
             label='Confirm Password'
-            vartiant='outlined'
+            variant='filled'
             type="password"
             name="confirmPassword"
             id="confirmPassword"
-            placeholder="Confirm Password"
+            
             onChange={handleChange}
             required
           />
