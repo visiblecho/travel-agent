@@ -142,23 +142,18 @@ const ActivityIndex = () => {
                   </AccordionDetails>
                 </Accordion>
               ))}
-              <Stack spacing={1} mt={2} flexWrap="wrap" justifyContent="center">
+              <ButtonGroup orientation="vertical" variant="outlined">
                 <Button
                   variant="contained"
                   onClick={() => navigate(`/trips/${tripId}/activities/new`)}
                 >
                   Add
                 </Button>
-                <Button variant="outlined" onClick={handleAddExpertActivity}>
-                  Generate
-                </Button>
-                <Button
-                  variant="outlined"
-                  onClick={() => navigate(`/trips/${tripId}`)}
-                >
+                <Button onClick={handleAddExpertActivity}>Generate</Button>
+                <Button onClick={() => navigate(`/trips/${tripId}`)}>
                   Return
                 </Button>
-              </Stack>
+              </ButtonGroup>
             </Stack>
           )}
         </Paper>

@@ -13,6 +13,7 @@ import {
   TextField,
   Stack,
   CircularProgress,
+  ButtonGroup,
 } from '@mui/material'
 
 const TripUpdate = () => {
@@ -221,7 +222,7 @@ const TripUpdate = () => {
               {errorData.endDate && (
                 <p className="error-message">{errorData.endDate}</p>
               )}
-              <Stack spacing={1} mt={2} flexWrap="wrap" justifyContent="center">
+              <ButtonGroup orientation="vertical" variant="outlined">
                 <Button
                   variant="contained"
                   className="primary"
@@ -247,7 +248,7 @@ const TripUpdate = () => {
                   </Button>
                 ) : (
                   <Button
-                    variant="outlined"
+                    variant="contained"
                     color="error"
                     onClick={handleDeleteTrip}
                   >
@@ -257,7 +258,7 @@ const TripUpdate = () => {
                 <Button variant="outlined" onClick={() => navigate('/trips')}>
                   Return
                 </Button>
-              </Stack>
+              </ButtonGroup>
             </Stack>
           </>
         )}
